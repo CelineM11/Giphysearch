@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celine's Cosmic Giphy Galaxy</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet" />
+  <style>
+    /* CSS Variables */
+    :root {
+      --bg-color: #121212;
+      --header-bg: #1f1f1f;
+      --accent-color: #ff4081;
+      --accent-hover: #e91e63;
+      --text-color: #ffffff;
+      --font-stack: 'Arial', sans-serif;
+      --google-font: 'Bungee', cursive;
+    }
+    /* Base Styles */
+    body {
+      font-family: var(--font-stack);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    /* Header & Navigation */
+    header {
+      background-color: var(--header-bg);
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header h1 {
+      font-family: var(--google-font);
+      margin-bottom: 10px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+    /* Main Content */
+    main {
+      margin: 20px;
+    }
+    /* Search Form */
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    input[type="search"] {
+      padding: 12px;
+      width: 60%;
+      border: 2px solid var(--accent-color);
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: var(--header-bg);
+      color: var(--text-color);
+      outline: none;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 10px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: var(--accent-hover);
+    }
+    /* Grid Container for GIFs */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      padding: 10px;
+    }
+    .grid-container img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+    .grid-container img:hover {
+      transform: scale(1.05);
+    }
+    /* Responsive Styles */
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+      }
+      form {
+        flex-direction: column;
+      }
+      input[type="search"] {
+        width: 80%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Celine's Cosmic Giphy Galaxy</h1>
+    <nav>
+      <ul>
+        <li><a href="Index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <form id="search-form">
+        <input type="search" id="search-input" placeholder="Search for GIFs" aria-label="Search for GIFs" />
+        <button type="submit" id="search-button">Search</button>
+      </form>
+    </section>
+    <section id="results" class="grid-container">
+      <!-- GIFs will be displayed here -->
+    </section>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchForm = document.getElementById("search-form");
+      const searchInput = document.getElementById("search-input");
+      const resultsContainer = document.getElementById("results");
+      const apiKey = "x5ugFRHvkfjRLAzMkMWlYPnYmPgk7hcW"; // Your Giphy API key
+
+      function fetchGifs() {
+        const query = searchInput.value.trim();
+        if (!query) {
+          alert("Please enter a search term");
+          return;
+        }
+        const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(query)}&api_key=${apiKey}&limit=12`;
+        resultsContainer.innerHTML = "";
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            data.data.forEach((gif) => {
+              const img = document.createElement("img");
+              img.src = gif.images.fixed_height.url;
+              img.alt = gif.title || "GIF from Giphy";
+              resultsContainer.appendChild(img);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            resultsContainer.innerHTML = "<p>Error loading GIFs. Please try again later.</p>";
+          });
+      }
+
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        fetchGifs();
+      });
+    });
+  </script>
+</body>
+</html>

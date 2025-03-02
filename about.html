@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Celine's Cosmic Giphy Galaxy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --header-bg: #1f1f1f;
+      --accent-color: #ff4081;
+      --text-color: #ffffff;
+      --font-stack: 'Arial', sans-serif;
+      --google-font: 'Bungee', cursive;
+    }
+    body {
+      font-family: var(--font-stack);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: var(--header-bg);
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header h1 {
+      font-family: var(--google-font);
+      margin-bottom: 10px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+    main {
+      margin: 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Celine's Cosmic Giphy Galaxy</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <p>
+        Welcome to Celine's Cosmic Giphy Galaxy! This project is a creative journey through the universe of GIFs, powered by the Giphy API.
+        Developed with passion by Celine as part of an engineering bootcamp, this website showcases skills in HTML, CSS, JavaScript, and API integration.
+      </p>
+      <p>
+        Explore, search, and enjoy a stellar experience as you navigate the cosmos of animated imagery!
+      </p>
+    </section>
+  </main>
+</body>
+</html>
